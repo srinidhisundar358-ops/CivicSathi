@@ -71,3 +71,29 @@ def identify_document(text: str) -> dict:
 
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
+
+from p2_documents.formfill_mcp.service_client import call_service_tool
+
+
+@mcp.tool()
+async def analyse_uploaded_document_text(text: str) -> dict:
+
+    try:
+
+        # Ask Person 3 to analyse OCR text.
+        result = await call_service_tool(
+            "analyse_document_text",
+            {
+                "text": text
+            }
+        )
+
+        return response(result)
+
+    except Exception as exc:
+
+        return ToolResult(
+            ok=False,
+            error=str(exc)
+        ).model_dump(mode="json")
+
