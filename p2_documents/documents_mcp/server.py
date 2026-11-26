@@ -67,7 +67,82 @@ def identify_document(text: str) -> dict:
     return response(
         classify_document(text)
     )
+@mcp.tool()
+def get_affected_documents(
+    from_state: str,
+    to_state: str,
+    documents: list[dict]
+) -> dict:
+    """
+    Identify held documents that may need review after relocation.
+    This flags state/address mismatches; it does not confirm
+    that a government update is legally required.
+    """
 
+    affected = []
+
+    for doc in documents:
+        issued_state = doc.get("issued_state")
+        address_state = doc.get("address_state")
+
+        reasons = []
+
+        if address_state and address_state.lower() != to_state.lower():
+            reasons.append("Recorded address state differs from destination.")
+
+        if issued_state and issued_state.lower() != to_state.lower():
+            reasons.append("Document was issued in a different state; check portability or update rules.")
+
+        if reasons:
+            affected.append({
+                "doc_id": doc.get("doc_id"),
+                "issued_state": issued_state,
+                "address_state": address_state,
+                "reasons": reasons,
+                "requires_official_verification": True
+            })
+
+    return response({
+        "from_state": from_state,
+        "to_state": to_state,
+        "affected_documents": affected,
+        "count": len(affected)
+    })
+
+
+@mcp.tool()
+def get_update_order(
+    affected_documents: list[dict]
+) -> dict:
+    """
+    Suggest a practical review order for relocation-related updates.
+    This is a recommendation, not an official government sequence.
+    """
+
+    priority = {
+        "aadhaar": 1,
+        "voter_id": 2,
+        "ration_card": 3,
+        "driving_licence": 4,
+        "pan": 5,
+        "passport": 6
+    }
+
+    ordered = sorted(
+        affected_documents,
+        key=lambda doc: priority.get(
+            doc.get("doc_id", "").lower(),
+            99
+        )
+    )
+
+    return response({
+        "recommended_update_order": ordered,
+        "note": (
+            "Suggested review order only. Verify each document's "
+            "current requirements with its official issuing authority."
+        )
+    })
 
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
