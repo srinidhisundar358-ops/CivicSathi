@@ -6,7 +6,7 @@ from shared.ports import FORMFILL
 from shared.schemas import ToolResult
 
 from p2_documents.formfill_mcp.generator import (
-    prefill_form,
+    prefill_form as prefill_form_generator,
     validate_form,
     generate_pdf
 )
@@ -108,6 +108,76 @@ def generate_application_draft(
             error=str(exc)
         ).model_dump(mode="json")
 
+@mcp.tool()
+def prefill_form(
+    profile: dict,
+    service_id: str
+) -> dict:
+    """
+    Create a prefilled government application draft.
+    """
 
+    try:
+        draft = prefill_form_generator(profile, service_id)
+
+        address = (
+            profile.get("personal", {})
+            .get("address", {})
+        )
+
+        draft["service_id"] = service_id
+        draft["state"] = address.get(
+            "state",
+            profile.get("current_state", "")
+        )
+
+        # Validate the output against the shared schema.
+        result = PrefilledForm(**draft)
+
+        return response(result.model_dump(mode="json"))
+
+    except Exception as exc:
+        return ToolResult(
+            ok=False,
+            error=str(exc)
+        ).model_dump(mode="json")
+@mcp.tool()
+def render_form_pdf(form_data: dict) -> dict:
+    """
+    Generate and save a reviewable PDF draft.
+    Returns the saved PDF filename, not base64.
+    """
+
+    try:
+        output_dir = Path("generated")
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        pdf_base64 = generate_pdf(form_data)
+
+        import base64
+
+        filename = (
+            form_data.get("form_id", "application")
+            + "_draft.pdf"
+        )
+
+        output_path = output_dir / filename
+
+        output_path.write_bytes(
+            base64.b64decode(pdf_base64)
+        )
+
+        return response({
+            "pdf_filename": str(output_path),
+            "saved": True,
+            "official_submission": False,
+            "requires_user_review": True
+        })
+
+    except Exception as exc:
+        return ToolResult(
+            ok=False,
+            error=str(exc)
+        ).model_dump(mode="json")
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
