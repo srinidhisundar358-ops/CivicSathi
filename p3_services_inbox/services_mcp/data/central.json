@@ -1,0 +1,121 @@
+{
+  "aadhaar_address_update": {
+    "authority": "UIDAI",
+    "portal_name": "myAadhaar",
+    "official_link": "https://myaadhaar.uidai.gov.in/",
+    "steps": [
+      "Open the myAadhaar portal.",
+      "Authenticate using your registered mobile number.",
+      "Select address update.",
+      "Provide the new address and supporting proof.",
+      "Pay the applicable fee and check the request status."
+    ],
+    "fee": "INR 75",
+    "required_docs": ["aadhaar"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "UIDAI Aadhaar Services",
+        "url": "https://www.uidai.gov.in/en/my-aadhaar",
+        "last_verified": "2026-11-26"
+      },
+      {
+        "title": "Updating Data on Aadhaar",
+        "url": "https://uidai.gov.in/en/updating-data-on-aadhaar",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "voter_shift": {
+    "authority": "Election Commission of India",
+    "portal_name": "Voters Service Portal",
+    "official_link": "https://voters.eci.gov.in/",
+    "steps": [
+      "Open the Voters Service Portal.",
+      "Select Form 8 for shifting residence.",
+      "Provide existing voter registration details.",
+      "Enter the new residential address.",
+      "Attach an accepted address proof.",
+      "Review and submit the application to the electoral authority for the new address."
+    ],
+    "fee": null,
+    "required_docs": ["voter_id"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "ECI Form 8 Guidelines",
+        "url": "https://voters.eci.gov.in/guidelines/Form-8_en.pdf",
+        "last_verified": "2026-11-26"
+      },
+      {
+        "title": "ECI Form 8",
+        "url": "https://voters.eci.gov.in/formspdf/Form_8_English.pdf",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "passport_reissue": {
+    "authority": "Ministry of External Affairs",
+    "portal_name": "Passport Seva",
+    "official_link": null,
+    "steps": [],
+    "fee": null,
+    "required_docs": [],
+    "processing_time": null,
+    "sources": [],
+    "notes": "TODO-verify"
+  },
+  "pension_life_certificate": {
+    "authority": "Government of India",
+    "portal_name": "Jeevan Pramaan",
+    "official_link": null,
+    "steps": [],
+    "fee": null,
+    "required_docs": [],
+    "processing_time": null,
+    "sources": [],
+    "notes": "TODO-verify"
+  },
+  "bank_kyc_update": {
+    "authority": "Reserve Bank of India",
+    "portal_name": "Customer's own bank",
+    "official_link": "https://www.rbi.org.in/",
+    "steps": [
+      "Contact your bank through an authorised channel.",
+      "Provide a declaration of your new address.",
+      "Supply additional address proof if requested.",
+      "Complete the bank's address verification process."
+    ],
+    "fee": null,
+    "required_docs": [],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "RBI KYC Directions",
+        "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12988",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "ration_card_transfer": {
+    "authority": "Department of Food and Public Distribution",
+    "portal_name": "One Nation One Ration Card",
+    "official_link": "https://dfpd.gov.in/faqs/en",
+    "steps": [
+      "Locate an enabled Fair Price Shop in the destination state.",
+      "Provide existing ration card or Aadhaar details.",
+      "Complete biometric authentication.",
+      "Access eligible foodgrain benefits using the existing ration card."
+    ],
+    "fee": "No additional portability charge",
+    "required_docs": [],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Department of Food and Public Distribution FAQs",
+        "url": "https://dfpd.gov.in/faqs/en",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  }
+}
