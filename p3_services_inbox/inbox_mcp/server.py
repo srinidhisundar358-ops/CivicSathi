@@ -1,118 +1,73 @@
-
-import re
-from datetime import datetime
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("CivicSaathi Inbox")
+from shared.schemas import IncomingMessage, ToolResult
+from shared.ports import INBOX
+
+from .extractor import extract
+from .sender_filter import is_government
+from .gmail_client import consent_url, exchange_code, fetch
 
 
-def extract_message(message: str):
-    text = message.lower()
-
-    # Ignore verification messages without retaining their contents
-    verification_terms = [
-        "otp",
-        "one time password",
-        "verification code",
-        "verify your login",
-    ]
-
-    if any(term in text for term in verification_terms):
-        return {"category": "ignored"}
-
-    category = "unknown"
-    service_id = None
-
-    # Identify the government service
-    if "driving licence" in text or "driving license" in text:
-        category = "driving_licence"
-        service_id = "dl_renewal"
-
-    elif "voter" in text or "epic" in text:
-        category = "voter"
-        service_id = "voter_shift"
-
-    elif "pension" in text or "life certificate" in text:
-        category = "pension"
-        service_id = "pension_life_certificate"
-
-    elif "aadhaar" in text:
-        category = "aadhaar"
-        service_id = "aadhaar_address_update"
-
-    elif "passport" in text:
-        category = "passport"
-        service_id = "passport_reissue"
-
-    elif "ration card" in text:
-        category = "ration_card"
-        service_id = "ration_card_transfer"
-
-    action = None
-
-    # Identify a broad action
-    if any(word in text for word in ["submit", "upload"]):
-        action = "submit_document"
-
-    elif "visit" in text:
-        action = "visit_office"
-
-    elif "update" in text:
-        action = "update_information"
-
-    # Recognise common numeric date formats
-    date_patterns = [
-        r"\b\d{2}-\d{2}-\d{4}\b",
-        r"\b\d{2}/\d{2}/\d{4}\b",
-        r"\b\d{4}-\d{2}-\d{2}\b",
-    ]
-
-    due_date = None
-
-    for pattern in date_patterns:
-        match = re.search(pattern, message)
-        if match:
-            due_date = match.group(0)
-            break
-
-    return {
-        "category": category,
-        "service_id": service_id,
-        "action": action,
-        "due_date": due_date,
-    }
+mcp = FastMCP(
+    "inbox",
+    host="0.0.0.0",
+    port=INBOX
+)
 
 
 @mcp.tool()
-def extract_from_message(message: str):
-    """Extract basic structured information from a supplied message."""
-    return extract_message(message)
+def extract_from_message(message: IncomingMessage) -> dict:
+    result = extract(message)
+
+    return ToolResult(
+        ok=True,
+        data=result.model_dump(mode="json")
+    ).model_dump(mode="json")
 
 
 @mcp.tool()
-def is_government_sender(sender: str, channel: str = "email"):
-    """Demo-only sender check. A match does not prove authenticity."""
+def is_government_sender(sender: str, channel: str) -> dict:
+    return ToolResult(
+        ok=True,
+        data=is_government(sender, channel)
+    ).model_dump(mode="json")
 
-    if channel != "email":
-        return False
 
-    sender = sender.strip().lower()
+@mcp.tool()
+def start_gmail_consent(user_id: str) -> dict:
+    return ToolResult(
+        ok=True,
+        data=consent_url(user_id),
+        simulated=True
+    ).model_dump(mode="json")
 
-    if "@" not in sender:
-        return False
 
-    domain = sender.rsplit("@", 1)[-1]
+@mcp.tool()
+def complete_gmail_consent(user_id: str, code: str) -> dict:
+    return ToolResult(
+        ok=True,
+        data=exchange_code(user_id, code),
+        simulated=True
+    ).model_dump(mode="json")
 
-    # Temporary demo allowlist only.
-    # This will be moved into gov_senders.json.
-    demo_domains = {
-        "demo.gov.in",
-        "example.gov.in",
-    }
 
-    return domain in demo_domains
+@mcp.tool()
+def fetch_recent_emails(
+    user_id: str,
+    since_hours: int = 24
+) -> dict:
+
+    messages = fetch(user_id, since_hours)
+
+    return ToolResult(
+        ok=True,
+        data=[
+            message.model_dump(mode="json")
+            for message in messages
+        ],
+        simulated=True
+    ).model_dump(mode="json")
 
 
 if __name__ == "__main__":
-    mcp.run()
-
+    mcp.run(transport="streamable-http")
