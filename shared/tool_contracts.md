@@ -2,6 +2,9 @@
 
 Each tool returns a `ToolResult`. The examples use fake demo data. Service facts and verification dates come from the service owner’s verified records.
 
+
+> **Stub rules for `StubHub` (P1):** use the first Output example of each tool. For `services__get_process` and `documents__get_required_docs`, copy `service_id` / `state` from the call arguments into the example before returning it, so the same example serves every checklist item. The "unknown service" example is what any service_id outside `shared/ids.SERVICE_IDS` must return. The `sources` entry in the `get_process` happy path is a demo placeholder; P3's real data replaces it.
+
 ## documents
 
 ### `documents__get_affected_documents`
@@ -52,9 +55,37 @@ Output
     {
       "doc_id": "aadhaar",
       "service_id": "aadhaar_address_update",
-      "priority": "recommended",
-      "reason": "Demo relocation to Pune",
+      "priority": "mandatory",
+      "reason": "Other documents use your Aadhaar address as proof, so update it first.",
       "held": true
+    },
+    {
+      "doc_id": "voter_id",
+      "service_id": "voter_shift",
+      "priority": "mandatory",
+      "reason": "You vote where you live, so your voter registration must move to Pune.",
+      "held": true
+    },
+    {
+      "doc_id": "driving_licence",
+      "service_id": "dl_address_change",
+      "priority": "mandatory",
+      "reason": "A licence must show your current state address.",
+      "held": true
+    },
+    {
+      "doc_id": "vehicle_rc",
+      "service_id": "vehicle_reregistration",
+      "priority": "mandatory",
+      "reason": "A vehicle moving to another state needs re-registration.",
+      "held": true
+    },
+    {
+      "doc_id": "bank_account",
+      "service_id": "bank_kyc_update",
+      "priority": "recommended",
+      "reason": "Tell your bank your new address so letters and KYC stay valid.",
+      "held": false
     }
   ],
   "error": null,
@@ -70,6 +101,9 @@ Input
 ```json
 {
   "doc_ids": [
+    "bank_account",
+    "vehicle_rc",
+    "driving_licence",
     "voter_id",
     "aadhaar"
   ]
@@ -83,7 +117,10 @@ Output
   "ok": true,
   "data": [
     "aadhaar",
-    "voter_id"
+    "voter_id",
+    "driving_licence",
+    "vehicle_rc",
+    "bank_account"
   ],
   "error": null,
   "simulated": false,
@@ -525,6 +562,36 @@ Output
   "ok": true,
   "data": {
     "service_id": "voter_shift",
+    "state": "maharashtra",
+    "authority": "Election Commission of India",
+    "official_link": "https://voters.eci.gov.in/",
+    "steps": [
+      "Sign in to the Voters' Service Portal with your own account.",
+      "Choose the option for shifting your residence (Form 8).",
+      "Enter your new address in Pune and your EPIC number yourself.",
+      "Review everything, then submit it yourself on the portal."
+    ],
+    "fee": null,
+    "required_docs": [
+      "aadhaar"
+    ],
+    "processing_time": null,
+    "verified": false
+  },
+  "error": null,
+  "simulated": true,
+  "sources": []
+  
+}
+```
+
+Output - example 2: unknown service (safety demo, never guess)
+
+```json
+{
+  "ok": true,
+  "data": {
+    "service_id": "driving_abroad_permit",
     "state": "maharashtra",
     "authority": null,
     "official_link": null,
