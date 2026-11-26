@@ -1,1 +1,13 @@
-
+.env
+*.db
+*.db-*
+tokens/
+generated/
+*credentials*.json
+.venv/
+__pycache__/
+.pytest_cache/
+.idea/
+app/**/build/
+.gradle/
+local.properties

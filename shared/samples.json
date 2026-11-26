@@ -1,1 +1,313 @@
-
+{
+  "Source": {
+    "title": "Example source (fixture)",
+    "url": "https://example.org/",
+    "last_verified": "2026-11-26"
+  },
+  "ToolResult": {
+    "ok": true,
+    "data": "pong",
+    "simulated": true,
+    "sources": []
+  },
+  "Address": {
+    "line1": "10 Demo Lane",
+    "city": "Bengaluru",
+    "state": "karnataka",
+    "pincode": "560001"
+  },
+  "PersonalDetails": {
+    "full_name": "Ravi Kumar",
+    "address": {
+      "line1": "10 Demo Lane",
+      "city": "Bengaluru",
+      "state": "karnataka",
+      "pincode": "560001"
+    }
+  },
+  "HeldDocument": {
+    "doc_id": "driving_licence",
+    "issued_state": "karnataka",
+    "expiry_date": "2027-01-05",
+    "origin": "user"
+  },
+  "Consents": {
+    "sms": true,
+    "gmail": false,
+    "digilocker": false
+  },
+  "UserProfile": {
+    "user_id": "demo_ravi",
+    "language": "en",
+    "age": 29,
+    "birth_state": "karnataka",
+    "current_state": "karnataka",
+    "personal": {
+      "full_name": "Ravi Kumar",
+      "address": {
+        "line1": "10 Demo Lane",
+        "city": "Bengaluru",
+        "state": "karnataka",
+        "pincode": "560001"
+      }
+    },
+    "documents": [
+      {
+        "doc_id": "aadhaar",
+        "origin": "user"
+      },
+      {
+        "doc_id": "voter_id",
+        "origin": "user"
+      },
+      {
+        "doc_id": "pan",
+        "origin": "user"
+      },
+      {
+        "doc_id": "driving_licence",
+        "issued_state": "karnataka",
+        "expiry_date": "2027-01-05",
+        "origin": "user"
+      },
+      {
+        "doc_id": "vehicle_rc",
+        "issued_state": "karnataka",
+        "origin": "user"
+      }
+    ],
+    "consents": {
+      "sms": true,
+      "gmail": false,
+      "digilocker": false
+    }
+  },
+  "LifeEvent": {
+    "event_type": "relocation_interstate",
+    "from_state": "karnataka",
+    "to_state": "maharashtra"
+  },
+  "ChecklistItem": {
+    "doc_id": "aadhaar",
+    "service_id": "aadhaar_address_update",
+    "action": "Review address update",
+    "priority": "recommended",
+    "reason": "Demo relocation to Pune",
+    "steps": [],
+    "required_docs": [],
+    "sources": []
+  },
+  "ActionPlan": {
+    "summary": "Demo relocation checklist",
+    "items": [
+      {
+        "doc_id": "aadhaar",
+        "service_id": "aadhaar_address_update",
+        "action": "Review address update",
+        "priority": "recommended",
+        "reason": "Demo relocation to Pune",
+        "steps": [],
+        "required_docs": [],
+        "sources": []
+      }
+    ],
+    "reminders_created": []
+  },
+  "Reminder": {
+    "reminder_id": "demo_dl_reminder",
+    "user_id": "demo_ravi",
+    "doc_id": "driving_licence",
+    "title": "Driving licence expiry",
+    "due_date": "2027-01-05",
+    "channel": "app",
+    "source_message_id": "demo_dl_sms"
+  },
+  "IncomingMessage": {
+    "message_id": "demo_dl_sms",
+    "user_id": "demo_ravi",
+    "channel": "sms",
+    "sender": "DEMO-DL",
+    "text": "Demo: your driving licence expires 05 Jan 2027.",
+    "received_at": "2026-11-26T12:00:00+05:30"
+  },
+  "ExtractedInfo": {
+    "message_id": "demo_dl_sms",
+    "is_government": true,
+    "category": "deadline",
+    "doc_id": "driving_licence",
+    "service_id": "dl_renewal",
+    "due_date": "2027-01-05",
+    "summary": "Driving licence expires on 5 Jan 2027",
+    "confidence": 1.0
+  },
+  "Notification": {
+    "notification_id": "demo_dl_notice",
+    "user_id": "demo_ravi",
+    "title": "Driving licence expiry",
+    "body": "Driving licence expires on 5 Jan 2027",
+    "type": "reminder",
+    "open_target": "chat",
+    "context_id": "demo_dl_sms",
+    "created_at": "2026-11-26T12:00:00+05:30",
+    "read": false
+  },
+  "FormField": {
+    "field_id": "epic_number",
+    "label": "EPIC number",
+    "source": "user",
+    "required": true,
+    "needs_user_input": true
+  },
+  "PrefilledForm": {
+    "form_id": "demo_voter_shift",
+    "user_id": "demo_ravi",
+    "service_id": "voter_shift",
+    "state": "maharashtra",
+    "fields": [
+      {
+        "field_id": "full_name",
+        "label": "Full name",
+        "value": "Ravi Kumar",
+        "source": "profile",
+        "required": true,
+        "needs_user_input": false
+      },
+      {
+        "field_id": "epic_number",
+        "label": "EPIC number",
+        "source": "user",
+        "required": true,
+        "needs_user_input": true
+      }
+    ],
+    "missing": [
+      "epic_number"
+    ],
+    "official_link": "https://voters.eci.gov.in/",
+    "status": "draft"
+  },
+  "profiles": {
+    "demo_ravi": {
+      "user_id": "demo_ravi",
+      "language": "en",
+      "age": 29,
+      "birth_state": "karnataka",
+      "current_state": "karnataka",
+      "personal": {
+        "full_name": "Ravi Kumar",
+        "address": {
+          "line1": "10 Demo Lane",
+          "city": "Bengaluru",
+          "state": "karnataka",
+          "pincode": "560001"
+        }
+      },
+      "documents": [
+        {
+          "doc_id": "aadhaar",
+          "origin": "user"
+        },
+        {
+          "doc_id": "voter_id",
+          "origin": "user"
+        },
+        {
+          "doc_id": "pan",
+          "origin": "user"
+        },
+        {
+          "doc_id": "driving_licence",
+          "issued_state": "karnataka",
+          "expiry_date": "2027-01-05",
+          "origin": "user"
+        },
+        {
+          "doc_id": "vehicle_rc",
+          "issued_state": "karnataka",
+          "origin": "user"
+        }
+      ],
+      "consents": {
+        "sms": true,
+        "gmail": false,
+        "digilocker": false
+      }
+    },
+    "demo_ajji": {
+      "user_id": "demo_ajji",
+      "language": "kn",
+      "age": 74,
+      "current_state": "karnataka",
+      "personal": {
+        "full_name": "Shantamma",
+        "address": {
+          "line1": "20 Demo Road",
+          "city": "Mysuru",
+          "state": "karnataka",
+          "pincode": "570001"
+        }
+      },
+      "documents": [
+        {
+          "doc_id": "aadhaar",
+          "origin": "user"
+        },
+        {
+          "doc_id": "voter_id",
+          "origin": "user"
+        },
+        {
+          "doc_id": "pension_ppo",
+          "origin": "user"
+        },
+        {
+          "doc_id": "bank_account",
+          "origin": "user"
+        }
+      ],
+      "consents": {
+        "sms": true,
+        "gmail": false,
+        "digilocker": false
+      }
+    }
+  },
+  "messages": [
+    {
+      "message_id": "demo_dl_sms",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "DEMO-DL",
+      "text": "Demo: your driving licence expires 05 Jan 2027.",
+      "received_at": "2026-11-26T12:00:00+05:30"
+    },
+    {
+      "message_id": "demo_pension_sms",
+      "user_id": "demo_ajji",
+      "channel": "sms",
+      "sender": "DEMO-PENSION",
+      "text": "Demo: your annual life certificate is due 30 Nov 2026.",
+      "received_at": "2026-11-26T12:00:00+05:30"
+    }
+  ],
+  "reminders": [
+    {
+      "reminder_id": "demo_dl_reminder",
+      "user_id": "demo_ravi",
+      "doc_id": "driving_licence",
+      "title": "Driving licence expiry",
+      "due_date": "2027-01-05",
+      "channel": "app",
+      "source_message_id": "demo_dl_sms"
+    },
+    {
+      "reminder_id": "demo_pension_reminder",
+      "user_id": "demo_ajji",
+      "doc_id": "pension_ppo",
+      "title": "Annual life certificate",
+      "due_date": "2026-11-30",
+      "channel": "app",
+      "source_message_id": "demo_pension_sms"
+    }
+  ]
+}

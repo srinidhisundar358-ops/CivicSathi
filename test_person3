@@ -1,0 +1,59 @@
+
+import json
+
+from p3_services_inbox.services_mcp.form_intelligence import (
+    get_service_requirements,
+    map_profile_to_fields,
+    validate_form_data,
+    get_document_dependencies,
+    analyse_document_text,
+    compare_names
+)
+
+with open("shared/samples.json", encoding="utf-8") as f:
+    samples = json.load(f)
+
+profile = samples["profiles"]["demo_ravi"]
+
+print("\n1. SERVICE REQUIREMENTS")
+print(get_service_requirements("voter_shift"))
+
+print("\n2. INTELLIGENT FORM PREFILL")
+prefilled = map_profile_to_fields(
+    profile,
+    "voter_shift"
+)
+print(json.dumps(prefilled, indent=2))
+
+print("\n3. MISSING FIELD DETECTION")
+print(prefilled["missing"])
+
+print("\n4. FORM VALIDATION")
+print(validate_form_data(
+    profile,
+    "voter_shift",
+    {
+        "full_name": "Ravi Kumar",
+        "state": "maharashtra"
+    }
+))
+
+print("\n5. DOCUMENT DEPENDENCIES")
+print(get_document_dependencies(
+    "karnataka",
+    "maharashtra",
+    profile["documents"]
+))
+
+print("\n6. OCR ANALYSIS")
+print(analyse_document_text(
+    "ELECTION COMMISSION ELECTOR PHOTO IDENTITY CARD"
+))
+
+print("\n7. NAME CONSISTENCY")
+print(compare_names({
+    "aadhaar": "Ravi Kumar",
+    "voter_id": "Ravi K Kumar"
+}))
+
+print("\nALL TESTS COMPLETED")

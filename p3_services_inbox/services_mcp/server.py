@@ -103,6 +103,8 @@ def explain_term(term: str, language: str) -> dict:
         }
     ).model_dump(mode="json")
 
-
+@mcp.tool()
+def ping() -> dict:
+    return ToolResult(ok=True, data="pong").model_dump(mode="json")
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
