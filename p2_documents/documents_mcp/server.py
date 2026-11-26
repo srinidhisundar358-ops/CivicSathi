@@ -1,174 +1,262 @@
-
 from mcp.server.fastmcp import FastMCP
 
 from shared.ports import DOCUMENTS
 from shared.schemas import ToolResult
 
 from p2_documents.documents_mcp.processor import (
-    process_document
+    process_document,
+    classify_document,
 )
+
+from p2_documents.formfill_mcp.service_client import call_service_tool
+
 
 mcp = FastMCP(
     "documents",
     host="0.0.0.0",
-    port=DOCUMENTS
+    port=DOCUMENTS,
 )
 
 
-def response(data):
+def response(data, simulated=False):
     return ToolResult(
         ok=True,
         data=data,
-        simulated=False
+        simulated=simulated,
+    ).model_dump(mode="json")
+
+
+def error_response(message):
+    return ToolResult(
+        ok=False,
+        error=str(message),
     ).model_dump(mode="json")
 
 
 @mcp.tool()
 def ping() -> dict:
+    """Check whether Documents MCP is running."""
     return response("pong")
 
 
 @mcp.tool()
 def upload_and_process_document(
     filename: str,
-    content_base64: str
+    content_base64: str,
 ) -> dict:
     """
-    Accept a PDF/image in base64 format.
-    Extract text, detect document type and redact
-    sensitive identity numbers in returned text.
+    Extract text from an uploaded PDF or image.
+
+    Identity-number patterns are redacted from returned text.
+    The document is not permanently stored.
     """
 
     try:
-        result = process_document(
-            filename,
-            content_base64
-        )
-
+        result = process_document(filename, content_base64)
         return response(result)
 
     except Exception as exc:
-        return ToolResult(
-            ok=False,
-            error=str(exc)
-        ).model_dump(mode="json")
+        return error_response(exc)
 
 
 @mcp.tool()
 def identify_document(text: str) -> dict:
     """
-    Identify a document type from OCR-extracted text.
+    Identify a likely document type from extracted text.
+
+    The result is a suggestion and must be confirmed by the user.
     """
 
-    from p2_documents.documents_mcp.processor import (
-        classify_document
-    )
+    try:
+        return response(classify_document(text))
+    except Exception as exc:
+        return error_response(exc)
 
-    return response(
-        classify_document(text)
-    )
+
 @mcp.tool()
 def get_affected_documents(
-    from_state: str,
-    to_state: str,
-    documents: list[dict]
+    event: dict,
+    held: list[dict],
 ) -> dict:
     """
-    Identify held documents that may need review after relocation.
-    This flags state/address mismatches; it does not confirm
-    that a government update is legally required.
+    Identify documents that may need attention after a life event.
+
+    The output follows the P1 plan_builder contract:
+    a list of records containing doc_id, service_id, priority,
+    reason and held.
+
+    This is a checklist suggestion, not a legal determination.
     """
 
-    affected = []
+    try:
+        event_type = str(event.get("event_type", "")).lower()
+        from_state = str(event.get("from_state") or "").lower()
+        to_state = str(event.get("to_state") or "").lower()
 
-    for doc in documents:
-        issued_state = doc.get("issued_state")
-        address_state = doc.get("address_state")
+        held_ids = {
+            str(doc.get("doc_id", "")).lower()
+            for doc in held
+            if isinstance(doc, dict)
+        }
 
-        reasons = []
+        # Do not invent requirements for unsupported life events.
+        if event_type != "relocation_interstate":
+            return response([])
 
-        if address_state and address_state.lower() != to_state.lower():
-            reasons.append("Recorded address state differs from destination.")
+        if not from_state or not to_state or from_state == to_state:
+            return response([])
 
-        if issued_state and issued_state.lower() != to_state.lower():
-            reasons.append("Document was issued in a different state; check portability or update rules.")
+        # These are demo checklist suggestions. The official authority
+        # must be checked for the user's actual circumstances.
+        candidates = [
+            {
+                "doc_id": "aadhaar",
+                "service_id": "aadhaar_address_update",
+                "priority": "mandatory",
+                "reason": (
+                    "Review your Aadhaar address after moving. "
+                    "Other services may use it as address proof."
+                ),
+            },
+            {
+                "doc_id": "voter_id",
+                "service_id": "voter_shift",
+                "priority": "mandatory",
+                "reason": (
+                    "Review your voter registration so it reflects "
+                    "your new place of ordinary residence."
+                ),
+            },
+            {
+                "doc_id": "driving_licence",
+                "service_id": "dl_address_change",
+                "priority": "mandatory",
+                "reason": (
+                    "Check whether your driving licence address "
+                    "needs updating with the issuing authority."
+                ),
+            },
+            {
+                "doc_id": "vehicle_rc",
+                "service_id": "vehicle_reregistration",
+                "priority": "mandatory",
+                "reason": (
+                    "Check the applicable requirements for a vehicle "
+                    "being kept in another state."
+                ),
+            },
+            {
+                "doc_id": "bank_account",
+                "service_id": "bank_kyc_update",
+                "priority": "recommended",
+                "reason": (
+                    "Update your bank's address records if needed "
+                    "so correspondence and KYC details stay current."
+                ),
+            },
+        ]
 
-        if reasons:
-            affected.append({
-                "doc_id": doc.get("doc_id"),
-                "issued_state": issued_state,
-                "address_state": address_state,
-                "reasons": reasons,
-                "requires_official_verification": True
+        result = []
+
+        for item in candidates:
+            result.append({
+                **item,
+                "held": item["doc_id"] in held_ids,
             })
 
-    return response({
-        "from_state": from_state,
-        "to_state": to_state,
-        "affected_documents": affected,
-        "count": len(affected)
-    })
+        return response(result)
+
+    except Exception as exc:
+        return error_response(exc)
 
 
 @mcp.tool()
-def get_update_order(
-    affected_documents: list[dict]
-) -> dict:
+def get_update_order(doc_ids: list[str]) -> dict:
     """
-    Suggest a practical review order for relocation-related updates.
-    This is a recommendation, not an official government sequence.
+    Return a suggested order for reviewing relocation-related updates.
+
+    The backend expects a list of document ID strings.
     """
 
     priority = {
         "aadhaar": 1,
         "voter_id": 2,
-        "ration_card": 3,
-        "driving_licence": 4,
-        "pan": 5,
-        "passport": 6
+        "driving_licence": 3,
+        "vehicle_rc": 4,
+        "ration_card": 5,
+        "passport": 6,
+        "pan": 7,
+        "bank_account": 8,
+        "birth_certificate": 9,
+        "pension_ppo": 10,
     }
 
     ordered = sorted(
-        affected_documents,
-        key=lambda doc: priority.get(
-            doc.get("doc_id", "").lower(),
-            99
-        )
+        dict.fromkeys(doc_ids),
+        key=lambda doc_id: priority.get(
+            str(doc_id).lower(),
+            99,
+        ),
     )
 
-    return response({
-        "recommended_update_order": ordered,
-        "note": (
-            "Suggested review order only. Verify each document's "
-            "current requirements with its official issuing authority."
-        )
-    })
+    return response(ordered)
 
-if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
 
-from p2_documents.formfill_mcp.service_client import call_service_tool
+@mcp.tool()
+def get_required_docs(
+    service_id: str,
+    state: str,
+) -> dict:
+    """Return known demo document requirements for a service."""
+
+    requirements = {
+        "voter_shift": ["aadhaar"],
+        "aadhaar_address_update": [],
+        "dl_address_change": [],
+        "dl_renewal": [],
+        "vehicle_reregistration": [],
+        "bank_kyc_update": [],
+    }
+
+    if service_id not in requirements:
+        return response([])
+
+    return response(requirements[service_id])
+
+
+@mcp.tool()
+def get_alternatives(
+    doc_id: str,
+    purpose: str,
+) -> dict:
+    """
+    Return known alternative documents for a purpose.
+
+    No alternatives are currently configured in this prototype.
+    """
+
+    return response([])
 
 
 @mcp.tool()
 async def analyse_uploaded_document_text(text: str) -> dict:
+    """
+    Send OCR text to the Services MCP analysis tool.
+
+    The receiving service is responsible for its own analysis.
+    """
 
     try:
-
-        # Ask Person 3 to analyse OCR text.
         result = await call_service_tool(
             "analyse_document_text",
-            {
-                "text": text
-            }
+            {"text": text},
         )
 
         return response(result)
 
     except Exception as exc:
+        return error_response(exc)
 
-        return ToolResult(
-            ok=False,
-            error=str(exc)
-        ).model_dump(mode="json")
 
+if __name__ == "__main__":
+    mcp.run(transport="streamable-http")
