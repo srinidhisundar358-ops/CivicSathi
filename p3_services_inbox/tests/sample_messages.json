@@ -1,0 +1,362 @@
+[
+  {
+    "message": {
+      "message_id": "msg_001",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-DEMODL",
+      "text": "Your driving licence expires on 05 Jan 2027. Please renew your driving licence.",
+      "received_at": "2026-11-26T09:00:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_001",
+      "is_government": true,
+      "category": "deadline",
+      "doc_id": "driving_licence",
+      "service_id": "dl_renewal",
+      "due_date": "2027-01-05",
+      "summary": "Driving licence renewal required.",
+      "confidence": 0.95
+    },
+    "demo": true
+  },
+  {
+    "message": {
+      "message_id": "msg_002",
+      "user_id": "demo_ajji",
+      "channel": "sms",
+      "sender": "VM-DEMOPN",
+      "text": "Please submit your annual pension life certificate by 30 Nov 2026 through Jeevan Pramaan.",
+      "received_at": "2026-11-26T09:05:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_002",
+      "is_government": true,
+      "category": "deadline",
+      "doc_id": "pension_ppo",
+      "service_id": "pension_life_certificate",
+      "due_date": "2026-11-30",
+      "summary": "Annual pension life certificate submission required.",
+      "confidence": 0.95
+    },
+    "demo": true
+  },
+  {
+    "message": {
+      "message_id": "msg_003",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-PASSPT",
+      "text": "Your passport expires on 15/01/2027. Apply for passport reissue before expiry.",
+      "received_at": "2026-11-26T09:10:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_003",
+      "is_government": true,
+      "category": "deadline",
+      "doc_id": "passport",
+      "service_id": "passport_reissue",
+      "due_date": "2027-01-15",
+      "summary": "Passport reissue required.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_004",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-VAHAN",
+      "text": "Complete vehicle re-registration by 15-01-2027.",
+      "received_at": "2026-11-26T09:15:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_004",
+      "is_government": true,
+      "category": "deadline",
+      "doc_id": "vehicle_rc",
+      "service_id": "vehicle_reregistration",
+      "due_date": "2027-01-15",
+      "summary": "Vehicle re-registration required.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_005",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-ECHALN",
+      "text": "Your e-challan payment of Rs. 500 is due by 15 December 2026. Challan No CH12345678.",
+      "received_at": "2026-11-26T09:20:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_005",
+      "is_government": true,
+      "category": "payment_due",
+      "due_date": "2026-12-15",
+      "amount": "500",
+      "application_ref": "CH12345678",
+      "summary": "Traffic challan payment due.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_006",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-PARIVH",
+      "text": "Pending traffic challan payment INR 1000. Challan No CH87654321.",
+      "received_at": "2026-11-26T09:25:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_006",
+      "is_government": true,
+      "category": "payment_due",
+      "amount": "1000",
+      "application_ref": "CH87654321",
+      "summary": "Traffic challan payment pending.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_007",
+      "user_id": "demo_ajji",
+      "channel": "sms",
+      "sender": "VM-ECHALN",
+      "text": "Your pending e-challan payment is ₹750. Pay by 20/12/2026.",
+      "received_at": "2026-11-26T09:30:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_007",
+      "is_government": true,
+      "category": "payment_due",
+      "amount": "750",
+      "due_date": "2026-12-20",
+      "summary": "Traffic challan payment due.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_008",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-PASSPT",
+      "text": "Your passport reissue application has been approved. ARN PS123456789.",
+      "received_at": "2026-11-26T09:35:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_008",
+      "is_government": true,
+      "category": "status_update",
+      "doc_id": "passport",
+      "service_id": "passport_reissue",
+      "application_ref": "PS123456789",
+      "summary": "Passport application approved.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_009",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-ECISMS",
+      "text": "Your voter registration shifting application has been received. Application No VT12345678.",
+      "received_at": "2026-11-26T09:40:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_009",
+      "is_government": true,
+      "category": "status_update",
+      "doc_id": "voter_id",
+      "service_id": "voter_shift",
+      "application_ref": "VT12345678",
+      "summary": "Voter registration application received.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_010",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-UIDAI-G",
+      "text": "Your Aadhaar address update has been completed. URN AD123456789.",
+      "received_at": "2026-11-26T09:45:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_010",
+      "is_government": true,
+      "category": "status_update",
+      "doc_id": "aadhaar",
+      "service_id": "aadhaar_address_update",
+      "application_ref": "AD123456789",
+      "summary": "Aadhaar address update completed.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_011",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-UIDAI",
+      "text": "Your OTP is 123456. Do not share it.",
+      "received_at": "2026-11-26T09:50:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_011",
+      "is_government": true,
+      "category": "otp",
+      "summary": "OTP message dropped",
+      "confidence": 1.0
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_012",
+      "user_id": "demo_ajji",
+      "channel": "sms",
+      "sender": "VM-DIGILK",
+      "text": "Your one time password is 987654.",
+      "received_at": "2026-11-26T09:55:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_012",
+      "is_government": true,
+      "category": "otp",
+      "summary": "OTP message dropped",
+      "confidence": 1.0
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_013",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-PASSPT",
+      "text": "Your verification code is 456789.",
+      "received_at": "2026-11-26T10:00:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_013",
+      "is_government": true,
+      "category": "otp",
+      "summary": "OTP message dropped",
+      "confidence": 1.0
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_014",
+      "user_id": "demo_ravi",
+      "channel": "sms",
+      "sender": "VM-SHOPNG",
+      "text": "Congratulations! Get 50 percent off your next purchase.",
+      "received_at": "2026-11-26T10:05:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_014",
+      "is_government": false,
+      "category": "other",
+      "summary": "Non-government message ignored.",
+      "confidence": 1.0
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_015",
+      "user_id": "demo_ajji",
+      "channel": "sms",
+      "sender": "VM-PRIZES",
+      "text": "Claim your prize of Rs. 50000 today.",
+      "received_at": "2026-11-26T10:10:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_015",
+      "is_government": false,
+      "category": "other",
+      "summary": "Non-government message ignored.",
+      "confidence": 1.0
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_016",
+      "user_id": "demo_ravi",
+      "channel": "email",
+      "sender": "demo@eci.gov.in",
+      "text": "Your voter shifting application has been approved. Ref VT87654321.",
+      "received_at": "2026-11-26T10:15:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_016",
+      "is_government": true,
+      "category": "status_update",
+      "doc_id": "voter_id",
+      "service_id": "voter_shift",
+      "application_ref": "VT87654321",
+      "summary": "Voter shifting application approved.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_017",
+      "user_id": "demo_ajji",
+      "channel": "email",
+      "sender": "demo@jeevanpramaan.gov.in",
+      "text": "Your pension life certificate is due by 30 November 2026.",
+      "received_at": "2026-11-26T10:20:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_017",
+      "is_government": true,
+      "category": "deadline",
+      "doc_id": "pension_ppo",
+      "service_id": "pension_life_certificate",
+      "due_date": "2026-11-30",
+      "summary": "Pension life certificate submission required.",
+      "confidence": 0.95
+    },
+    "demo": false
+  },
+  {
+    "message": {
+      "message_id": "msg_018",
+      "user_id": "demo_ravi",
+      "channel": "email",
+      "sender": "demo@bbmp.gov.in",
+      "text": "Your property tax payment of Rs. 2500 is due by 31 December 2026.",
+      "received_at": "2026-11-26T10:25:00+05:30"
+    },
+    "expected": {
+      "message_id": "msg_018",
+      "is_government": true,
+      "category": "payment_due",
+      "amount": "2500",
+      "due_date": "2026-12-31",
+      "summary": "Property tax payment due.",
+      "confidence": 0.95
+    },
+    "demo": false
+  }
+]

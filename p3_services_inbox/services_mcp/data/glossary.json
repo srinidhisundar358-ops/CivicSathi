@@ -1,0 +1,102 @@
+{
+  "EPIC": {
+    "en": "Electors Photo Identity Card, commonly called a voter ID card.",
+    "hi": "मतदाता फोटो पहचान पत्र।",
+    "kn": "ಮತದಾರರ ಭಾವಚಿತ್ರ ಗುರುತಿನ ಚೀಟಿ."
+  },
+  "Form 8": {
+    "en": "Application for shifting voter registration, correcting details or replacing a voter ID card.",
+    "hi": "मतदाता पंजीकरण का पता बदलने, विवरण सुधारने या पहचान पत्र बदलने का आवेदन।",
+    "kn": "ಮತದಾರರ ವಿಳಾಸ ಬದಲಾವಣೆ, ವಿವರಗಳ ತಿದ್ದುಪಡಿ ಅಥವಾ ಗುರುತಿನ ಚೀಟಿ ಬದಲಾವಣೆಯ ಅರ್ಜಿ."
+  },
+  "RTO": {
+    "en": "Regional Transport Office that handles driving licences and vehicle registration.",
+    "hi": "क्षेत्रीय परिवहन कार्यालय जो ड्राइविंग लाइसेंस और वाहन पंजीकरण का काम करता है।",
+    "kn": "ಚಾಲನಾ ಪರವಾನಗಿ ಮತ್ತು ವಾಹನ ನೋಂದಣಿ ನಿರ್ವಹಿಸುವ ಪ್ರಾದೇಶಿಕ ಸಾರಿಗೆ ಕಚೇರಿ."
+  },
+  "NOC": {
+    "en": "No Objection Certificate issued by an authority confirming that it has no objection.",
+    "hi": "अनापत्ति प्रमाण पत्र।",
+    "kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ."
+  },
+  "PPO": {
+    "en": "Pension Payment Order used to identify and authorise pension payments.",
+    "hi": "पेंशन भुगतान आदेश।",
+    "kn": "ಪಿಂಚಣಿ ಪಾವತಿ ಆದೇಶ."
+  },
+  "Jeevan Pramaan": {
+    "en": "A digital life certificate service for pensioners.",
+    "hi": "पेंशनभोगियों के लिए डिजिटल जीवन प्रमाण पत्र सेवा।",
+    "kn": "ಪಿಂಚಣಿದಾರರಿಗಾಗಿ ಡಿಜಿಟಲ್ ಜೀವನ ಪ್ರಮಾಣಪತ್ರ ಸೇವೆ."
+  },
+  "e-KYC": {
+    "en": "Electronic verification of a customer's identity.",
+    "hi": "ग्राहक की पहचान का इलेक्ट्रॉनिक सत्यापन।",
+    "kn": "ಗ್ರಾಹಕರ ಗುರುತಿನ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಪರಿಶೀಲನೆ."
+  },
+  "ONORC": {
+    "en": "One Nation One Ration Card enables eligible beneficiaries to access ration benefits across India.",
+    "hi": "एक राष्ट्र एक राशन कार्ड योजना देशभर में पात्र लाभार्थियों को राशन प्राप्त करने की सुविधा देती है।",
+    "kn": "ಒಂದು ರಾಷ್ಟ್ರ ಒಂದು ಪಡಿತರ ಚೀಟಿ ಯೋಜನೆಯಡಿ ಅರ್ಹರು ದೇಶದಾದ್ಯಂತ ಪಡಿತರ ಪಡೆಯಬಹುದು."
+  },
+  "Address Proof": {
+    "en": "An accepted document that confirms your residential address.",
+    "hi": "आपके निवास के पते की पुष्टि करने वाला दस्तावेज।",
+    "kn": "ನಿಮ್ಮ ವಾಸದ ವಿಳಾಸವನ್ನು ದೃಢೀಕರಿಸುವ ದಾಖಲೆ."
+  },
+  "Aadhaar": {
+    "en": "A unique 12-digit identity number issued by UIDAI.",
+    "hi": "UIDAI द्वारा जारी 12 अंकों की विशिष्ट पहचान संख्या।",
+    "kn": "UIDAI ನೀಡುವ 12 ಅಂಕೆಗಳ ವಿಶಿಷ್ಟ ಗುರುತಿನ ಸಂಖ್ಯೆ."
+  },
+  "PAN": {
+    "en": "Permanent Account Number issued by the Income Tax Department.",
+    "hi": "आयकर विभाग द्वारा जारी स्थायी खाता संख्या।",
+    "kn": "ಆದಾಯ ತೆರಿಗೆ ಇಲಾಖೆ ನೀಡುವ ಶಾಶ್ವತ ಖಾತೆ ಸಂಖ್ಯೆ."
+  },
+  "DL": {
+    "en": "Driving Licence authorising a person to drive specified classes of vehicles.",
+    "hi": "निर्धारित श्रेणी के वाहन चलाने का लाइसेंस।",
+    "kn": "ನಿರ್ದಿಷ್ಟ ವರ್ಗದ ವಾಹನಗಳನ್ನು ಚಲಾಯಿಸಲು ನೀಡುವ ಪರವಾನಗಿ."
+  },
+  "RC": {
+    "en": "Registration Certificate containing a vehicle's registration details.",
+    "hi": "वाहन के पंजीकरण का प्रमाण पत्र।",
+    "kn": "ವಾಹನ ನೋಂದಣಿಯ ವಿವರಗಳನ್ನು ಹೊಂದಿರುವ ಪ್ರಮಾಣಪತ್ರ."
+  },
+  "URN": {
+    "en": "Update Request Number used to track an Aadhaar update request.",
+    "hi": "आधार अपडेट अनुरोध की स्थिति जानने की संख्या।",
+    "kn": "ಆಧಾರ್ ನವೀಕರಣ ಅರ್ಜಿಯ ಸ್ಥಿತಿ ತಿಳಿಯುವ ಸಂಖ್ಯೆ."
+  },
+  "ARN": {
+    "en": "Application Reference Number used to identify or track an application.",
+    "hi": "आवेदन की पहचान और स्थिति जानने की संदर्भ संख्या।",
+    "kn": "ಅರ್ಜಿಯ ಗುರುತು ಮತ್ತು ಸ್ಥಿತಿ ತಿಳಿಯುವ ಉಲ್ಲೇಖ ಸಂಖ್ಯೆ."
+  },
+  "OTP": {
+    "en": "One Time Password used for temporary authentication. Never share it with others.",
+    "hi": "अस्थायी सत्यापन के लिए एक बार उपयोग होने वाला पासवर्ड। इसे साझा न करें।",
+    "kn": "ತಾತ್ಕಾಲಿಕ ದೃಢೀಕರಣಕ್ಕಾಗಿ ಒಮ್ಮೆ ಬಳಸುವ ಪಾಸ್‌ವರ್ಡ್. ಇದನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಡಿ."
+  },
+  "DigiLocker": {
+    "en": "A government digital platform for accessing and storing digital documents.",
+    "hi": "डिजिटल दस्तावेज प्राप्त करने और सुरक्षित रखने का सरकारी मंच।",
+    "kn": "ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳನ್ನು ಪಡೆಯಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಸರ್ಕಾರಿ ವೇದಿಕೆ."
+  },
+  "e-Challan": {
+    "en": "An electronic notice issued for a traffic violation.",
+    "hi": "यातायात नियम उल्लंघन के लिए जारी इलेक्ट्रॉनिक चालान।",
+    "kn": "ಸಂಚಾರ ನಿಯಮ ಉಲ್ಲಂಘನೆಗಾಗಿ ನೀಡುವ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಚಲನ್."
+  },
+  "Life Certificate": {
+    "en": "A certificate confirming that a pensioner is alive.",
+    "hi": "पेंशनभोगी के जीवित होने का प्रमाण पत्र।",
+    "kn": "ಪಿಂಚಣಿದಾರರು ಜೀವಂತವಾಗಿರುವುದನ್ನು ದೃಢೀಕರಿಸುವ ಪ್ರಮಾಣಪತ್ರ."
+  },
+  "UIDAI": {
+    "en": "Unique Identification Authority of India, responsible for Aadhaar.",
+    "hi": "भारतीय विशिष्ट पहचान प्राधिकरण, जो आधार का प्रबंधन करता है।",
+    "kn": "ಆಧಾರ್ ನಿರ್ವಹಿಸುವ ಭಾರತೀಯ ವಿಶಿಷ್ಟ ಗುರುತಿನ ಪ್ರಾಧಿಕಾರ."
+  }
+}

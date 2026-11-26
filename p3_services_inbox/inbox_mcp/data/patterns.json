@@ -1,0 +1,18 @@
+{
+  "otp": [
+    "(?i)\\b(?:OTP|one[\\s-]+time[\\s-]+password|verification\\s+code)\\b[^\\d\\n]{0,40}\\b\\d{4,8}\\b",
+    "(?i)\\b\\d{4,8}\\b[^\\d\\n]{0,40}\\b(?:OTP|one[\\s-]+time[\\s-]+password|verification\\s+code)\\b"
+  ],
+  "dates": [
+    "\\b\\d{1,2}/\\d{1,2}/\\d{4}\\b",
+    "\\b\\d{1,2}-\\d{1,2}-\\d{4}\\b",
+    "(?i)\\b\\d{1,2}\\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)(?:\\s+\\d{4})?\\b",
+    "(?i)\\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\\s+\\d{1,2}(?:,?\\s+\\d{4})?\\b"
+  ],
+  "amounts": [
+    "(?i)(?:\\bRs\\.?|\\bINR|₹)\\s*([0-9]+(?:,[0-9]+)*(?:\\.[0-9]{1,2})?)"
+  ],
+  "references": [
+    "(?i)\\b(?:Ref(?:erence)?|Application\\s+No\\.?|ARN|URN|Challan)(?:\\s+(?:No\\.?|Number|ID))?\\s*[:#-]?\\s*([A-Z0-9]{8,20})\\b"
+  ]
+}

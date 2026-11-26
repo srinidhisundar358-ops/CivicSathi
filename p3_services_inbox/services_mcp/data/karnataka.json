@@ -1,0 +1,73 @@
+{
+  "dl_address_change": {
+    "authority": "Karnataka Transport Department - RTO",
+    "portal_name": "Sarathi Parivahan",
+    "official_link": "https://sarathi.parivahan.gov.in/",
+    "steps": [
+      "Open Sarathi Parivahan.",
+      "Select Karnataka.",
+      "Choose Apply for Change of Address.",
+      "Complete the relevant sections of Form 2."
+    ],
+    "fee": null,
+    "required_docs": ["driving_licence"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Official Driving Licence Application Form 2",
+        "url": "https://mparivahan.parivahan.gov.in/docs/Form-2.pdf",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "dl_renewal": {
+    "authority": "Karnataka Transport Department - RTO",
+    "portal_name": "Sarathi Parivahan",
+    "official_link": "https://sarathi.parivahan.gov.in/",
+    "steps": [
+      "Open Sarathi Parivahan and select Karnataka.",
+      "Choose Apply for DL Renewal.",
+      "Complete Form 2.",
+      "Provide the existing driving licence.",
+      "Provide fitness declaration or medical certificate as applicable.",
+      "Pay the applicable charges."
+    ],
+    "fee": null,
+    "required_docs": ["driving_licence"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Parivahan Driving Licence Renewal",
+        "url": "https://mparivahan.parivahan.gov.in/mstatic/english/dl-info-renewal-dl.html",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "vehicle_reregistration": {
+    "authority": "Karnataka Transport Department - RTO",
+    "portal_name": "Vahan Parivahan",
+    "official_link": "https://vahan.parivahan.gov.in/",
+    "steps": [
+      "Obtain an NOC from the original registering authority where applicable.",
+      "Apply to the destination RTO using Form 27.",
+      "Provide the registration certificate and supporting documents.",
+      "Pay applicable registration charges and road tax.",
+      "Complete the registration reassignment process."
+    ],
+    "fee": null,
+    "required_docs": ["vehicle_rc"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Parivahan Form 27",
+        "url": "https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/form%2027.pdf",
+        "last_verified": "2026-11-26"
+      },
+      {
+        "title": "Parivahan NOC Guidelines",
+        "url": "https://mparivahan.parivahan.gov.in/mstatic/english/rc-info-no-objection.html",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  }
+}

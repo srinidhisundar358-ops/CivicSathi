@@ -1,0 +1,49 @@
+{
+  "sms_headers": [
+    "UIDAI",
+    "AADHAR",
+    "PARIVH",
+    "SARATH",
+    "VAHAN",
+    "ITDEPT",
+    "EPFOHO",
+    "DIGILK",
+    "PASSPT",
+    "ECISMS",
+    "JEEVAN",
+    "PENSION",
+    "ECHALN",
+    "DEMODL",
+    "DEMOPN"
+  ],
+  "email_domains": [
+    ".gov.in",
+    ".nic.in"
+  ],
+  "keywords": [
+    "aadhaar",
+    "uidai",
+    "driving licence",
+    "driving license",
+    "parivahan",
+    "sarathi",
+    "vahan",
+    "passport",
+    "voter",
+    "election commission",
+    "pension",
+    "life certificate",
+    "jeevan pramaan",
+    "ration card",
+    "digilocker",
+    "income tax",
+    "epfo",
+    "challan",
+    "property tax",
+    "kyc",
+    "renewal",
+    "expiry",
+    "deadline"
+  ],
+  "demo_numbers": []
+}
