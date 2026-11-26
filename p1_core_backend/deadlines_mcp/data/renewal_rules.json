@@ -1,0 +1,17 @@
+{
+  "driving_licence": {
+    "validity": "TODO-verify",
+    "renew_before_days": null,
+    "official_link": null
+  },
+  "passport": {
+    "validity": "TODO-verify",
+    "renew_before_days": null,
+    "official_link": null
+  },
+  "vehicle_rc": {
+    "validity": "TODO-verify",
+    "renew_before_days": null,
+    "official_link": null
+  }
+}
