@@ -32,29 +32,35 @@ def ping() -> dict:
     return response("pong")
 
 
+
+from p2_documents.formfill_mcp.service_client import call_service_tool
+
+
 @mcp.tool()
-def prepare_government_form(
+async def prepare_government_form(
     profile: dict,
     service_id: str
 ) -> dict:
-    """
-    Automatically map profile information to form fields.
-    Identify missing information.
-    """
 
     try:
-        result = prefill_form(
-            profile,
-            service_id
+
+        result = await call_service_tool(
+            "map_profile_to_fields",
+            {
+                "profile": profile,
+                "service_id": service_id
+            }
         )
 
         return response(result)
 
     except Exception as exc:
+
         return ToolResult(
             ok=False,
             error=str(exc)
         ).model_dump(mode="json")
+
 
 
 @mcp.tool()
