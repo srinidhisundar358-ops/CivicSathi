@@ -1,0 +1,86 @@
+{
+  "dl_address_change": {
+    "authority": "Maharashtra Motor Vehicle Department - RTO",
+    "portal_name": "Sarathi Parivahan",
+    "official_link": "https://sarathi.parivahan.gov.in/",
+    "steps": [
+      "Open Sarathi Parivahan.",
+      "Select Maharashtra.",
+      "Choose change of address in driving licence.",
+      "Provide existing driving licence details and new address proof.",
+      "Complete Aadhaar authentication if eligible for faceless service.",
+      "Submit the application."
+    ],
+    "fee": null,
+    "required_docs": ["driving_licence"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Maharashtra Sarathi Faceless Services",
+        "url": "https://transport.maharashtra.gov.in/1363/Sarathi-Related-Faceless-Services",
+        "last_verified": "2026-11-26"
+      },
+      {
+        "title": "Maharashtra Existing Licence Services",
+        "url": "https://transport.maharashtra.gov.in/1143/Services-on-Existing-License",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "dl_renewal": {
+    "authority": "Maharashtra Motor Vehicle Department - RTO",
+    "portal_name": "Sarathi Parivahan",
+    "official_link": "https://sarathi.parivahan.gov.in/",
+    "steps": [
+      "Open Sarathi Parivahan.",
+      "Select Maharashtra.",
+      "Choose driving licence renewal.",
+      "Provide existing licence details.",
+      "Complete the applicable fitness declaration or medical certificate.",
+      "Pay the applicable charges and submit the application."
+    ],
+    "fee": null,
+    "required_docs": ["driving_licence"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Maharashtra Sarathi Faceless Services",
+        "url": "https://transport.maharashtra.gov.in/1363/Sarathi-Related-Faceless-Services",
+        "last_verified": "2026-11-26"
+      },
+      {
+        "title": "Parivahan Driving Licence Renewal",
+        "url": "https://mparivahan.parivahan.gov.in/mstatic/english/dl-info-renewal-dl.html",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  },
+  "vehicle_reregistration": {
+    "authority": "Maharashtra Motor Vehicle Department - RTO",
+    "portal_name": "Vahan Parivahan",
+    "official_link": "https://vahan.parivahan.gov.in/",
+    "steps": [
+      "Obtain a No Objection Certificate from the original registering authority.",
+      "Apply to the destination RTO using Form 27.",
+      "Provide the registration certificate and new address proof.",
+      "Provide valid insurance and pollution certificates.",
+      "Pay the applicable registration fee and road tax.",
+      "Complete vehicle inspection where required."
+    ],
+    "fee": null,
+    "required_docs": ["vehicle_rc"],
+    "processing_time": null,
+    "sources": [
+      {
+        "title": "Maharashtra RTO Procedures",
+        "url": "https://transport.maharashtra.gov.in/1185/RTO-Procedure",
+        "last_verified": "2026-11-26"
+      },
+      {
+        "title": "Parivahan Reassignment of Registration Mark",
+        "url": "https://staging.parivahan.gov.in/en/print/pdf/node/21",
+        "last_verified": "2026-11-26"
+      }
+    ]
+  }
+}
