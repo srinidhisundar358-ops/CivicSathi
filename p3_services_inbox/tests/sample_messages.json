@@ -1,0 +1,54 @@
+
+[
+  {
+    "message": "Your synthetic driving licence application requires a document. Please upload it by 26-11-2026.",
+    "expected": {
+      "category": "driving_licence",
+      "service_id": "dl_renewal",
+      "action": "submit_document",
+      "due_date": "26-11-2026"
+    }
+  },
+  {
+    "message": "Your voter registration update requires submission of documents.",
+    "expected": {
+      "category": "voter",
+      "service_id": "voter_shift",
+      "action": "submit_document",
+      "due_date": null
+    }
+  },
+  {
+    "message": "Pension life certificate information has been updated.",
+    "expected": {
+      "category": "pension",
+      "service_id": "pension_life_certificate",
+      "action": "update_information",
+      "due_date": null
+    }
+  },
+  {
+    "message": "Please update your Aadhaar address details.",
+    "expected": {
+      "category": "aadhaar",
+      "service_id": "aadhaar_address_update",
+      "action": "update_information",
+      "due_date": null
+    }
+  },
+  {
+    "message": "Your verification code is available for this synthetic test.",
+    "expected": {
+      "category": "ignored"
+    }
+  },
+  {
+    "message": "Your application has been received. No action is required.",
+    "expected": {
+      "category": "unknown",
+      "service_id": null,
+      "action": null,
+      "due_date": null
+    }
+  }
+]
