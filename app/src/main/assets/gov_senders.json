@@ -1,0 +1,6 @@
+{
+  "sms_headers": ["UIDAI", "VOTER", "ECI", "PARIVH", "SARTHI", "VAHAN", "EPFO", "DIGILK", "JEEVAN", "KARNTC", "MAHAGV"],
+  "email_domains": [".gov.in", ".nic.in"],
+  "keywords": ["driving licence", "life certificate", "jeevan pramaan", "voter", "aadhaar", "challan", "expiry"],
+  "demo_numbers": ["+919999900001", "15555215554", "6505551212"]
+}
